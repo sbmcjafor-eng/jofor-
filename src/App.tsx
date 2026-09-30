@@ -11,6 +11,7 @@ import { GraphicSection } from './components/GraphicSection';
 import { AboutSection } from './components/AboutSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
+import { CursorSpotlight } from './components/CursorSpotlight';
 import { Code, Download, Check, Sparkles } from 'lucide-react';
 import { STANDALONE_HTML_TEMPLATE } from './data/standaloneHtml';
 
@@ -39,8 +40,11 @@ export default function App() {
   return (
     <div
       id="top"
-      className="min-h-screen bg-[#04060a] text-slate-100 selection:bg-amber-500/30 selection:text-amber-300"
+      className="min-h-screen bg-[#04060a] text-slate-100 selection:bg-amber-500/30 selection:text-amber-300 relative"
     >
+      {/* Interactive Circular Cursor Spotlight / Glowing Torch following cursor */}
+      <CursorSpotlight />
+
       {/* Navigation Bar */}
       <Navbar />
 

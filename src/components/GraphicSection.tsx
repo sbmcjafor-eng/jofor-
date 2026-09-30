@@ -60,25 +60,25 @@ export const GraphicSection: React.FC = () => {
     selectedGraphicIndex !== null ? GRAPHIC_WORKS[selectedGraphicIndex] : null;
 
   return (
-    <section id="graphics" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-20">
+    <section id="graphics" className="py-20 px-4 sm:px-6 lg:px-8 max-w-[1440px] mx-auto scroll-mt-20">
       
       {/* Section Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 pb-8 border-b border-purple-500/20">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 pb-6 border-b border-purple-500/20">
         <div>
-          <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl bg-purple-500/10 text-purple-400 text-xs font-bold tracking-wider uppercase mb-3.5 border border-purple-500/30 shadow-lg shadow-purple-500/15">
-            <Palette className="w-4 h-4 text-purple-400" />
-            <span>Design Portfolio &bull; 14 Curated Artworks</span>
+          <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-xl bg-purple-500/10 text-purple-400 text-xs font-bold tracking-wider uppercase mb-3 border border-purple-500/30 shadow-lg shadow-purple-500/15">
+            <Palette className="w-3.5 h-3.5 text-purple-400" />
+            <span>Design Portfolio &bull; {GRAPHIC_WORKS.length} Curated Artworks</span>
           </div>
           <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-100 tracking-tight">
             Graphic &amp; Poster Designs
           </h2>
-          <p className="mt-3.5 text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed">
+          <p className="mt-2.5 text-sm sm:text-base text-slate-300 max-w-2xl leading-relaxed">
             High-converting commercial key art, Behance poster series, product commercials, and advanced photo retouching. Move cursor over any card to animate and inspect in HD.
           </p>
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="text-xs sm:text-sm font-bold text-slate-200 bg-[#121624] px-5 py-3 rounded-2xl border border-slate-800 flex items-center gap-2.5 shadow-xl">
+          <div className="text-xs sm:text-sm font-bold text-slate-200 bg-[#121624] px-4 py-2.5 rounded-xl border border-slate-800 flex items-center gap-2 shadow-xl">
             <Layers className="w-4 h-4 text-amber-400" />
             <span>Showing {filteredGraphics.length} of {GRAPHIC_WORKS.length} Artworks</span>
           </div>
@@ -86,7 +86,7 @@ export const GraphicSection: React.FC = () => {
       </div>
 
       {/* Category Filter Tabs - Vibrant & Zero White */}
-      <div className="flex flex-wrap items-center gap-3.5 mb-14">
+      <div className="flex flex-wrap items-center gap-2.5 mb-10">
         {categories.map((cat) => {
           const count = cat === 'All Works' 
             ? GRAPHIC_WORKS.length 
@@ -97,14 +97,14 @@ export const GraphicSection: React.FC = () => {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-6 py-3 rounded-2xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer flex items-center gap-2.5 border ${
+              className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer flex items-center gap-2 border ${
                 isActive
                   ? 'bg-gradient-to-r from-purple-500 via-pink-500 to-amber-500 text-slate-950 border-pink-400 shadow-xl shadow-pink-500/30 scale-105'
                   : 'bg-[#0f1422] text-slate-300 border-slate-800 hover:border-pink-500/50 hover:text-pink-300 hover:bg-[#161d30]'
               }`}
             >
               <span>{cat}</span>
-              <span className={`text-[11px] px-2.5 py-0.5 rounded-lg font-black ${
+              <span className={`text-[11px] px-2 py-0.5 rounded-lg font-black ${
                 isActive ? 'bg-black/30 text-slate-950' : 'bg-[#182034] text-slate-400'
               }`}>
                 {count}
@@ -114,46 +114,39 @@ export const GraphicSection: React.FC = () => {
         })}
       </div>
 
-      {/* 14 Graphic Image Cards Grid: Noticeably Larger, Animated on Cursor Hover, Colorful Glowing Aura */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-12">
+      {/* 14 Graphic Image Cards Grid: 4 per row, Compact & Balanced, No Empty Void */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 lg:gap-6">
         {filteredGraphics.map((graphic, idx) => (
           <div
             key={graphic.id}
             onClick={() => openLightbox(idx)}
-            className="group relative flex flex-col rounded-[2rem] overflow-hidden bg-gradient-to-b from-[#141928] via-[#0f1322] to-[#080b14] border border-slate-800/90 shadow-2xl transition-all duration-500 ease-out hover:-translate-y-3.5 hover:scale-[1.035] cursor-pointer"
+            className="group relative flex flex-col rounded-2xl overflow-hidden bg-gradient-to-b from-[#141928] via-[#0f1322] to-[#080b14] border border-slate-800/90 shadow-xl transition-all duration-400 ease-out hover:-translate-y-2 hover:scale-[1.02] cursor-pointer"
             style={{
-              boxShadow: '0 25px 50px -15px rgba(0,0,0,0.85)',
+              boxShadow: '0 16px 36px -10px rgba(0,0,0,0.85)',
             }}
           >
             {/* Colorful Ambient Glow on Cursor Hover */}
             <div 
-              className={`absolute -inset-2 rounded-[2.5rem] bg-gradient-to-r ${graphic.accentColor} opacity-0 group-hover:opacity-45 blur-2xl transition-all duration-500 pointer-events-none`}
+              className={`absolute -inset-2 rounded-2xl bg-gradient-to-r ${graphic.accentColor} opacity-0 group-hover:opacity-40 blur-xl transition-all duration-500 pointer-events-none`}
             />
 
             {/* Light Shimmer Sweep across card */}
-            <div className="absolute inset-0 z-30 pointer-events-none overflow-hidden rounded-[2rem]">
+            <div className="absolute inset-0 z-30 pointer-events-none overflow-hidden rounded-2xl">
               <div className="w-1/2 h-full bg-gradient-to-r from-transparent via-amber-400/10 to-transparent card-shimmer" />
             </div>
 
             {/* Glowing Accent Border Line on Hover */}
             <div 
-              className={`absolute inset-0 rounded-[2rem] border-2 border-transparent group-hover:border-opacity-100 transition-colors duration-500 pointer-events-none z-30 ${graphic.borderColor}`}
+              className={`absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-opacity-100 transition-colors duration-400 pointer-events-none z-30 ${graphic.borderColor}`}
             />
 
-            {/* Image Container with Exact Filename & Remote Fallback */}
-            <div className={`relative w-full overflow-hidden bg-[#030509] ${
-              graphic.aspectRatio === '16/9' 
-                ? 'aspect-[16/9]' 
-                : graphic.aspectRatio === '1/1' 
-                ? 'aspect-square' 
-                : 'aspect-[3/4]'
-            }`}>
-              
+            {/* Compact Uniform Image Container (aspect-4/3 so all cards are identical height & not elongated) */}
+            <div className="relative w-full aspect-[4/3] overflow-hidden bg-[#030509]">
               <img
                 src={graphic.filename}
                 alt={graphic.title}
                 loading="lazy"
-                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 filter brightness-[0.92] group-hover:brightness-105"
+                className="w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-108 filter brightness-[0.93] group-hover:brightness-105"
                 onError={(e) => {
                   if (e.currentTarget.src !== graphic.remoteUrl) {
                     e.currentTarget.src = graphic.remoteUrl;
@@ -162,56 +155,56 @@ export const GraphicSection: React.FC = () => {
               />
 
               {/* Hover overlay gradient and action icon */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 z-20">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 z-20">
                 <div className="flex items-center justify-between">
-                  <span className="inline-flex items-center gap-1.5 text-xs font-extrabold text-slate-950 px-4 py-2 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 shadow-xl">
-                    <Maximize2 className="w-3.5 h-3.5" />
-                    <span>Expand HD Artwork</span>
+                  <span className="inline-flex items-center gap-1 text-[11px] font-extrabold text-slate-950 px-3 py-1.5 rounded-lg bg-gradient-to-r from-amber-400 to-amber-500 shadow-xl">
+                    <Maximize2 className="w-3 h-3" />
+                    <span>Expand HD</span>
                   </span>
-                  <span className="text-[11px] font-mono text-slate-300 bg-black/85 px-2.5 py-1 rounded-md border border-slate-700">
+                  <span className="text-[10px] font-mono text-slate-300 bg-black/85 px-2 py-0.5 rounded border border-slate-700">
                     {graphic.filename}
                   </span>
                 </div>
               </div>
 
               {/* Category tag badge on top corner */}
-              <div className="absolute top-4 left-4 z-20 pointer-events-none">
-                <span className="px-3.5 py-1.5 rounded-xl text-xs font-extrabold bg-black/85 text-amber-300 backdrop-blur-md border border-amber-500/40 shadow-xl">
+              <div className="absolute top-3 left-3 z-20 pointer-events-none">
+                <span className="px-2.5 py-1 rounded-lg text-[11px] font-extrabold bg-black/85 text-amber-300 backdrop-blur-md border border-amber-500/40 shadow-lg">
                   {graphic.category}
                 </span>
               </div>
             </div>
 
-            {/* Card Content Footer: Larger & Colorful */}
-            <div className="p-7 sm:p-8 flex-1 flex flex-col justify-between relative z-20 bg-gradient-to-b from-transparent to-[#080b14]">
-              <div>
-                <h3 className={`font-heading font-extrabold text-xl sm:text-2xl text-slate-100 ${graphic.accentTextColor} transition-colors line-clamp-1`}>
-                  {graphic.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-amber-400 font-bold mt-1.5">
+            {/* Card Content: Compact, Tight, Zero Empty Void */}
+            <div className="p-4 sm:p-4.5 flex-1 flex flex-col justify-between relative z-20 bg-gradient-to-b from-transparent to-[#080b14]">
+              <div className="space-y-1.5">
+                <p className="text-xs text-amber-400 font-bold truncate">
                   {graphic.clientOrTheme}
                 </p>
-                <p className="text-xs sm:text-sm text-slate-300 mt-2.5 line-clamp-2 leading-relaxed">
+                <h3 className={`font-heading font-extrabold text-base sm:text-lg text-slate-100 ${graphic.accentTextColor} transition-colors line-clamp-1`}>
+                  {graphic.title}
+                </h3>
+                <p className="text-xs text-slate-300 line-clamp-2 leading-relaxed">
                   {graphic.description}
                 </p>
               </div>
 
-              {/* Tags and Enlarge Button */}
-              <div className="mt-6 pt-5 border-t border-slate-800/80 flex items-center justify-between">
-                <div className="flex flex-wrap gap-2">
+              {/* Tags and Enlarge Button - Snug immediately below description */}
+              <div className="mt-3.5 pt-3 border-t border-slate-800/80 flex items-center justify-between gap-2">
+                <div className="flex flex-wrap gap-1.5 overflow-hidden">
                   {graphic.tags.slice(0, 2).map((t, i) => (
                     <span
                       key={i}
-                      className="text-xs font-bold px-3 py-1 rounded-lg bg-[#161c2a] text-slate-300 border border-slate-800"
+                      className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-[#161c2a] text-slate-300 border border-slate-800/90 truncate max-w-[110px]"
                     >
                       {t}
                     </span>
                   ))}
                 </div>
 
-                <span className="text-xs sm:text-sm font-extrabold text-amber-400 group-hover:text-amber-300 flex items-center gap-1.5 transition-transform group-hover:translate-x-1">
+                <span className="text-xs font-bold text-amber-400 group-hover:text-amber-300 flex items-center gap-1 shrink-0 transition-transform group-hover:translate-x-0.5">
                   <span>View Full</span>
-                  <Eye className="w-4 h-4" />
+                  <Eye className="w-3.5 h-3.5" />
                 </span>
               </div>
             </div>
